@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install NVM
-        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-        env:
-          NODE_VERSION: 14.17.0
-        run: nvm install $NODE_VERSION
+      - name: Install NVM and Node.js
+        run: |
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+          source ~/.nvm/nvm.sh
+          nvm install $NODE_VERSION
       - name: Install dependencies
         run: npm install
-      - name: Lint sourse code with ESLint
-        run: npm run lint  
+      - name: Lint source code with ESLint
+        run: npm run lint
