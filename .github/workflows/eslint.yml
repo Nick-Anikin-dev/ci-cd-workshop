@@ -13,10 +13,13 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install NVM
         run:  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+      - name: Run NVM
+        run: export NVM_DIR="$HOME/ .nvm" && . "$NVM_DIR/nvm.sh" --no-use
+        run: Run NVM
       - name: Install Node.js
         env:
-          NODE_VERSION: 14.17.9
-        run: nvm install $NODE_VERSION
+          NODE_VERSION: 14.17.9   
+        run: nvm install
       - name: Install dependencies
         run: npm install
       - name: Lint source code with ESLint
