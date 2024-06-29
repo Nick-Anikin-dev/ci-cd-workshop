@@ -1,6 +1,7 @@
 stages:
   - lint
   - format
+  - deploy
 
 cache:
   key:
@@ -25,3 +26,13 @@ prettier:
   script:
     - npm install
     - npm run format
+
+deploy:
+  image: node:20.13.1-alpine
+  stage: deploy
+  script: 
+    - eval $(ssh-agent -s)
+    - echo $SSH_PRIVATE_KEY" | tr -d '\r' ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - scp . deploy@142.93.177.172:~/realworld
