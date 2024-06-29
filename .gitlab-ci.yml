@@ -38,7 +38,7 @@ deploy:
   script: 
     - apt -qq update && apt upgrade -qqy openssh-client rsync
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' ssh-add -
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' ssh-add
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
@@ -47,4 +47,4 @@ deploy:
       --exclude .gitignore
       --exclude .git
       . deploy@142.93.177.172:~/realworld/
-    - scp -r $PWD deploy@142.93.177.172:~/realworld
+    - ssh deploy@142.93.177.172 "pushd ~/realworld && npm install && popd"
