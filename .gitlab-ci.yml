@@ -40,7 +40,7 @@ deploy:
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -v -
     - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
+    - chmod 600 ~/.ssh
     - echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
     - rsync -a --progress --human-readable --delete
       --exclude-from '.gitignore'
