@@ -8,10 +8,20 @@ on:
 
 jobs:
   eslint:
+    runs-on: ubuntu-latest
     container:
       image: node:20.13.1-alpine
     steps:
       - uses: actions/checkout@v2
+      - name: Cache node modules
+      - uses: actions/cache@v2
+        env:
+          cahce-name: npm-${{ hashFiles('package-lock.json') }}
+        with:
+          path: ~/.npm
+          key: ${{ env.cache-name }}
+          restore-key: |
+            ${{ env.cache-name }}  
       - name: Install dependencies
         run: npm install
       - name: Format source code with prettier
