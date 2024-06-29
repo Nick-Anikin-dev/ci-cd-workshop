@@ -1,5 +1,6 @@
 stages:
   - lint
+  - format
   
 eslint:
   stage: lint
