@@ -1,9 +1,9 @@
 module.exports = {
   apps : [{
-    name: 'realworld',
+    name: 'app',
     script: 'dist/main.js',
     env_production: {
-      PORT: 3000
+      PORT: 3000,
     }
   }],
 };
