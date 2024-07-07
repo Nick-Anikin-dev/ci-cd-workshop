@@ -23,11 +23,11 @@ jobs:
 
       - name: Copy files to the server
         run: |
-            rsync -a --progress --human-readable --delete
-            --exclude-from '.gitignore'
-            --exclude .gitignore
-            --exclude .git
-            --exclude public
+            rsync -a --progress --human-readable --delete \
+            --exclude-from '.gitignore' \
+            --exclude .gitignore \
+            --exclude .git \
+            --exclude public \
             . deployer@142.93.177.172:~/app/
 
       - name: Restart the application
