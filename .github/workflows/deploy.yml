@@ -23,16 +23,16 @@ jobs:
 
       - name: Copy files to the server
         run: |
-            rsync -a --progress --human-readable --delete \
+            rsync -a --progress --human-readable \
             --exclude-from '.gitignore' \
             --exclude .gitignore \
             --exclude .git \
             --exclude public \
-            . deployer@142.93.177.172:~/app/
+            . deployer@142.93.177.172:~/server/
 
       - name: Restart the application
         run: |
-            ssh $SSH_USER@$SSH_HOST "pushd ~/app && npm install && popd && pm2 restart ecosystem.config.js"
+            ssh $SSH_USER@$SSH_HOST "pushd ~/app/server && npm install && popd && pm2 restart ecosystem.config.js"
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
